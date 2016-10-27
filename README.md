@@ -64,30 +64,31 @@ To construct a .NET Provider for content extracted from any WordPress Content Ma
  </ul>
 
  <h2>Diagrams</h2>
- For diagrams, please select the files that are located in the root of the project.  These drawings were created at the time of the initial commit.
+ For diagrams, please select the <a href="https://github.com/camcguir/WordPress4dotNet/blob/master/WP4.NET.pdf">WP4.NET.pdf</a> pdf file that is located in the root of the project.  These drawings were created at the time of the initial commit.
 
  <h2>App Settings Dictionary</h2>
- "TopNavMenuID" = The Menu Id of the top navigation menu.  Once WP API MENUS is installed, you can find the appropriate menu id using the standard json request.
- "FootNavMenuID" = The Menu Id of the footer menu.  Once WP API MENUS is installed, you can find the appropriate menu id using the standard json request.
- "WPEndPoint" = The URL end point of your WordPress instance (ex. http://wordpress.org)
- "UseMenuBuilder" = An true/false setting granting option to use the MenuBuilder to decorate your menu object with HTML Attributes before being returned to the view.  You can choose to use the MenuBuilder class or doctor your menus manually in the view.
- "UseMVCMenuDecoration" = A true/false setting granting the option to use decoration styles for the OTB MVC Menu or the preconfigured WP decorations
- "CacheExpireMins-MENU" = Number of mins to set the cache expiration for MENU content
- "CacheExpireMins-POST" = Number of mins to set the cache expiration for POST content
- "CacheExpireMins-PAGE" = Number of mins to set the cache expiration for PAGE content
- "CacheExpireMins-POSTCATEGORY" = Number of mins to set the cache expiration for a collection of POST content
- "CacheExpireMins-MENUCOLLECTION" = Number of mins to set the cache expiration for a collection of MENU content
- "MockRequest" = While testing, you can locally save WP REST API repsonses.  This is a true/false setting that allows you to turn off/on the mock request.
- "MockPostLocation" = File name and location for POST content when using the MockRequest
- "MockPageLocation" = File name and location for PAGE content when using the MockRequest
- "MockCategoryLocation" = File name and location for CATEGORY content when using the MockRequest
- "MockPostCategoryLocation" = File name and location for a collection of POST content when using the MockRequest
- "MockTopMenuLocation" = File name and location for top nav MENU content when using the MockRequest
- "MockFootMenuLocation" = File name and location for footer MENU content when using the MockRequest
- "MockMenuCollection" = File name and location for a collection of MENU content when using the MockRequest
- "proxyAddress" = if your outbound requests go through a gateway or proxy, this is the proxy server address
- "proxyDomain" = if your outbound requests go through a gateway or proxy, this is the proxy server credentials domain
- "proxyUsername" = if your outbound requests go through a gateway or proxy, this is the proxy server credentials username
- "proxyPassword" = if your outbound requests go through a gateway or proxy, this is the proxy server credentials password
- "proxyTimeout" = if your outbound requests go through a gateway or proxy, this is the proxy server timeout settings (milliseconds)
-
+ <p>
+ "TopNavMenuID" = The Menu Id of the top navigation menu.  Once WP API MENUS is installed, you can find the appropriate menu id using the standard json request.<br>
+ "FootNavMenuID" = The Menu Id of the footer menu.  Once WP API MENUS is installed, you can find the appropriate menu id using the standard json request.<br>
+ "WPEndPoint" = The URL end point of your WordPress instance (ex. http://wordpress.org)<br>
+ "UseMenuBuilder" = An true/false setting granting option to use the MenuBuilder to decorate your menu object with HTML Attributes before being returned to the view.  You can choose to use the MenuBuilder class or doctor your menus manually in the view.<br>
+ "UseMVCMenuDecoration" = A true/false setting granting the option to use decoration styles for the OTB MVC Menu or the preconfigured WP decorations<br>
+ "CacheExpireMins-MENU" = Number of mins to set the cache expiration for MENU content<br>
+ "CacheExpireMins-POST" = Number of mins to set the cache expiration for POST content<br>
+ "CacheExpireMins-PAGE" = Number of mins to set the cache expiration for PAGE content<br>
+ "CacheExpireMins-POSTCATEGORY" = Number of mins to set the cache expiration for a collection of POST content<br>
+ "CacheExpireMins-MENUCOLLECTION" = Number of mins to set the cache expiration for a collection of MENU content<br>
+ "MockRequest" = While testing, you can locally save WP REST API repsonses.  This is a true/false setting that allows you to turn off/on the mock request.<br>
+ "MockPostLocation" = File name and location for POST content when using the MockRequest<br>
+ "MockPageLocation" = File name and location for PAGE content when using the MockRequest<br>
+ "MockCategoryLocation" = File name and location for CATEGORY content when using the MockRequest<br>
+ "MockPostCategoryLocation" = File name and location for a collection of POST content when using the MockRequest<br>
+ "MockTopMenuLocation" = File name and location for top nav MENU content when using the MockRequest<br>
+ "MockFootMenuLocation" = File name and location for footer MENU content when using the MockRequest<br>
+ "MockMenuCollection" = File name and location for a collection of MENU content when using the MockRequest<br>
+ "proxyAddress" = if your outbound requests go through a gateway or proxy, this is the proxy server address<br>
+ "proxyDomain" = if your outbound requests go through a gateway or proxy, this is the proxy server credentials domain<br>
+ "proxyUsername" = if your outbound requests go through a gateway or proxy, this is the proxy server credentials username<br>
+ "proxyPassword" = if your outbound requests go through a gateway or proxy, this is the proxy server credentials password<br>
+ "proxyTimeout" = if your outbound requests go through a gateway or proxy, this is the proxy server timeout settings (milliseconds)<br>
+</p>
