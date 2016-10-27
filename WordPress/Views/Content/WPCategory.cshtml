@@ -1,0 +1,139 @@
+﻿@using WordPress.Content.Models
+@using WordPress.Content.ViewModels
+@model WordPress.Content.ViewModels.WPContentViewModel
+
+
+@{
+    var contentType = WPEnums.ContentTypes.POSTCATEGORY;
+    if (ViewBag.Title == null)
+    {
+        ViewBag.Title = @Html.Raw(Model.GetSafeTitle(contentType));
+    }
+}
+<div id="posts-container">
+    @if (Model.PostCategories?.CategoryCollection != null)
+    {
+        foreach (var contentSnippet in Model.PostCategories.CategoryCollection)
+        {
+            var routeValues = new RouteValueDictionary();
+            routeValues.Add("id", contentSnippet.slug);
+            var contentUrl = @Url.Action(contentSnippet.type, routeValues);
+             <div id="post-@contentSnippet.id" class="post-@contentSnippet.id type-@contentSnippet.type status-@contentSnippet.ping_status format-@contentSnippet.format has-post-thumbnail style="width: 50%; position: absolute; left: 0px; top: 0px;">
+                 <div class="post-wrapper">
+
+                     <div class="post-slideshow">
+                         <ul class="slides">
+
+                             <li class="flex-active-slide" style="width: 100%; float: left; margin-right: -100%; position: relative; opacity: 1; display: block; z-index: 2;">
+                                 <div class="image-wrapper" aria-haspopup="true">
+
+                                     @if (contentSnippet.ContainsFullSizeImage())
+                                     {
+                                         <img src="@contentSnippet.GetFullSizeImg().source_url" class="attachment-full size-full wp-post-image"/>
+                                     }
+
+                                     <div class="rollover">
+                                         <div class="rollover-content">
+
+                                             <a class="rollover-link" href="@contentUrl">Permalink</a>
+
+
+
+                                             <div class="rollover-sep"></div>
+                                             @if (contentSnippet.ContainsFeaturedMedia())
+                                             {
+                                                 <a class="rollover-gallery" href="@contentSnippet.GetFeaturedMedia().source_url" data-id="15276" data-rel="iLightbox[gallery]" data-title="@Html.Raw(@contentSnippet.GetSafeTitle())" data-caption="">
+                                                     Gallery
+                                                 </a>
+                                             }
+
+                                             <h4 class="rollover-title" data-fontsize="19" data-lineheight="27">
+                                                 <a href="@contentUrl">
+                                                     @Html.Raw(@contentSnippet.GetSafeTitle())
+                                                 </a>
+                                             </h4>
+
+
+                                             <div class="rollover-categories">
+                                                 @if (contentSnippet.ContainsTerms())
+                                                 {
+                                                     var i = 0;
+                                                     foreach (var term in contentSnippet.GetTerms())
+                                                     {
+                                                         var termRouteValues = new RouteValueDictionary();
+                                                         termRouteValues.Add("id", term.slug);
+                                                         var termUrl = @Url.Action(term.taxonomy, routeValues);
+                                                         <a href="@termUrl">@Html.Raw(@term.name)</a>
+                                                         i++;
+                                                         if (i != contentSnippet._embedded.wpterm.First().Count())
+                                                         {
+                                                             @Html.Raw(", ")
+                                                         }
+                                                     }
+                                                 }
+                                             </div>
+
+
+
+                                         </div>
+                                     </div>
+
+
+                                 </div>
+                             </li>
+                         </ul>
+                         <ol class="flex-control-nav flex-control-paging"></ol><ul class="flex-direction-nav"><li><a class="flex-prev flex-disabled" href="#" tabindex="-1"></a></li><li><a class="flex-next flex-disabled" href="#" tabindex="-1"></a></li></ul>
+                     </div>
+                     <div class="post-content-wrapper">
+                         <div class="post-content post-content">
+                             <h2 class="entry-title" data-fontsize="40" data-lineheight="38"><a href="@contentUrl">@Html.Raw(@contentSnippet.GetSafeTitle())</a>
+                             </h2>
+                             <p class="single-line-meta">
+                                 By <span class="vcard"><span class="fn"><a href="/author/@contentSnippet.GetAuthor().slug/" title="Posts by @contentSnippet.GetAuthor().name" rel="author">@contentSnippet.GetAuthor().name</a></span></span>
+                                 <span class="inline-sep">|</span>
+
+
+                                 <span class="updated" style="display: none;">
+                                        2016-10-05T18:24:14+00:00
+                                    </span>
+
+                                 <span>@contentSnippet.date</span><span class="inline-sep">|</span>Categories:
+                                 @if (contentSnippet.ContainsTerms())
+                                 {
+                                     var i = 0;
+                                     foreach (var term in contentSnippet.GetTerms())
+                                     {
+                                         var termRouteValues = new RouteValueDictionary();
+                                         termRouteValues.Add("id", term.slug);
+                                         var termUrl = @Url.Action(term.taxonomy, termRouteValues);
+                                         <a href="@termUrl">@Html.Raw(@term.name)</a>
+                                         i++;
+                                         if (i != contentSnippet._embedded.wpterm.First().Count())
+                                         {
+                                             @Html.Raw(", ")
+                                         }
+                                     }
+                                 }
+                             </p>
+                             <div class="content-sep"></div>
+                             <div class="post-content-container">
+                                 @Html.Raw(@contentSnippet.GetSafeExcerpt())
+                             </div>
+                         </div>
+                         <div class="meta-info">
+                             <div class="alignleft"><a href="@contentUrl" class="read-more">Read More</a>
+                             </div>
+                             <div class="alignright"><a href="@contentUrl/#respond"><i class="icon-bubbles"></i>&nbsp;0</a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         }
+    }
+</div>
+
+
+
+
+

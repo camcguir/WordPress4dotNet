@@ -1,0 +1,87 @@
+﻿@using WordPress.Content.Models
+@using WordPress.Controllers
+@using WordPress.Content.ViewModels
+@model WordPress.Content.ViewModels.WPContentViewModel
+
+<div class="header-wrapper">
+    <div class="header-v1 logo-left sticky-menu- sticky-logo- mobile-logo-1 mobile-menu-design-modern ">
+        <div class="header-sticky-height"></div>
+        <div class="header">
+            <div class="row">
+                <div class="logo" data-margin-top="6px" data-margin-bottom="8px" data-margin-left="0px" data-margin-right="0px">
+                    <a class="logo-link" href="">
+                        <!-- sticky header logo -->
+                    </a>
+                </div>
+                @if (@Model.TopNavMenuModel != null && Model.TopNavMenuModel.items != null && Model.TopNavMenuModel.items.Any())
+    {
+        <div @Model.TopNavMenuModel.styles.GetSafeProperty("divTopMenuClass")>
+            <!--First Level Menu-->
+            <ul @Model.TopNavMenuModel.styles.GetSafeProperty("ulTopMenuId") @Model.TopNavMenuModel.styles.GetSafeProperty("ulTopMenuClass")>
+                @foreach (var menuItem in Model.TopNavMenuModel.items)
+                {
+                    if (menuItem.object_slug != null)
+                    {
+                        var routeValues = new RouteValueDictionary();
+                        routeValues.Add("id", menuItem.object_slug);
+                        var menuItemId = menuItem.id.ToString();
+
+                        <li @menuItem.styles.GetSafeProperty("liBaseMenuId" + "-" + @menuItemId) @Html.Raw(@menuItem.styles.GetSafeProperty("liBaseMenuClass" + "-" + @menuItemId))>
+                            @Html.ActionLink(menuItem.title, menuItem.type_label, routeValues)
+
+
+                            @if (menuItem.children != null && menuItem.children.Any())
+                            {
+                                <!--Second Level Menu-->
+                                <ul @menuItem.styles.GetSafeProperty("ulSubMenuClass" + "-" + @menuItemId)>
+                                    @foreach (var childItem in menuItem.children)
+                                    {
+                                        if (childItem.object_slug != null)
+                                        {
+                                            var routeValuesChild = new RouteValueDictionary();
+                                            routeValuesChild.Add("id", childItem.object_slug);
+                                            var menuItemIdChild = childItem.id.ToString();
+
+                                            <li @childItem.styles.GetSafeProperty("liBaseMenuId" + "-" + @menuItemIdChild) @Html.Raw(@childItem.styles.GetSafeProperty("liBaseMenuClass" + "-" + @menuItemIdChild))>
+                                                @Html.ActionLink(childItem.title, childItem.type_label, routeValuesChild)
+
+                                                @if (childItem.children != null && childItem.children.Any())
+                                                {
+                                                    <!--Third Level Menu-->
+                                                    <ul @childItem.styles.GetSafeProperty("ulSubMenuClass" + "-" + @menuItemIdChild)>
+                                                        @foreach (var subChildItem in childItem.children)
+                                                        {
+                                                            if (subChildItem.object_slug != null)
+                                                            {
+                                                                var routeValuesSubChild = new RouteValueDictionary();
+                                                                routeValuesSubChild.Add("id", subChildItem.object_slug);
+                                                                var menuItemIdSubChild = subChildItem.id.ToString();
+
+                                                                <li @subChildItem.styles.GetSafeProperty("liBaseMenuId" + "-" + @menuItemIdSubChild) @Html.Raw(subChildItem.styles.GetSafeProperty("liBaseMenuClass" + "-" + @menuItemIdSubChild))>
+                                                                    @Html.ActionLink(subChildItem.title, subChildItem.type_label, routeValuesSubChild)
+                                                                </li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                }
+                                            </li>
+                                        }
+
+                                    }
+                                </ul>
+                            }
+
+                        </li>
+                    }
+                }
+            </ul>
+
+        </div>
+    }
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+

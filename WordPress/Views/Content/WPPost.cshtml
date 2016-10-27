@@ -1,0 +1,21 @@
+﻿@using WordPress.Content.Models
+@using WordPress.Content.ViewModels
+@model WordPress.Content.ViewModels.WPContentViewModel
+
+@{
+    var contentType = WPEnums.ContentTypes.POST;
+    if (ViewBag.Title == null)
+    {
+        ViewBag.Title = @Html.Raw(Model.GetSafeTitle(contentType));
+    }
+}
+
+<div id="post-@Model.PostModel.id" class="post post-@Model.PostModel.id type-@Model.PostModel.type status-@Model.PostModel.ping_status format-@Model.PostModel.format has-post-thumbnail">
+    <h2 class="entry-title">@Html.Raw(@Model.GetSafeTitle(contentType))</h2>
+
+    @Html.Raw(Model.PostModel.GetSafeContent())
+</div>
+
+
+
+

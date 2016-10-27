@@ -1,0 +1,13 @@
+﻿@using WordPress.Content.Models
+@using WordPress.Content.ViewModels
+@model WordPress.Content.ViewModels.WPContentViewModel
+
+@{
+    var contentType = WPEnums.ContentTypes.PAGE;
+    if (ViewBag.Title == null)
+    {
+        ViewBag.Title = @Html.Raw(Model.GetSafeTitle(contentType));
+    }
+}
+
+@Html.Raw(Model.PageModel.GetSafeContent())

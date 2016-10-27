@@ -1,0 +1,39 @@
+﻿@using WordPress.Controllers
+@using WordPress.Content.ViewModels
+@model WordPress.Content.ViewModels.WPContentViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Html.Partial("_WPHeadScripts")
+</head>
+<body>
+<div id="wrapper" class="">
+    <div id="home" style="position: relative; top: 1px;"></div>
+    @Html.Partial("_WPHeader")
+
+    @Html.Partial("_WPSlider")
+
+    <div id="main" class="clearfix " style="">
+        <div class="row" style="">
+            <div id="content" class="full-width" style="width: 100%;">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_WPFootNavMenu")
+</div>
+    @Html.Partial("_WPFootScripts")
+    @RenderSection("scripts", required: false)
+</body>
+
+
+</html>
+
+

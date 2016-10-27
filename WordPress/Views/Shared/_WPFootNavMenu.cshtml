@@ -1,0 +1,56 @@
+﻿@using WordPress.Controllers
+@using WordPress.Content.ViewModels
+@model WordPress.Content.ViewModels.WPContentViewModel
+
+@if (Model.FooterNavMenuModel != null)
+{
+    if (Model.FooterNavMenuModel.items != null & Model.FooterNavMenuModel.items.Any())
+     {
+         <div class="footer">
+
+
+             <footer class="footer-widget-area widget-area footer-widget-area-center">
+                 <div class="row">
+                     <div class="columns columns-1 widget-area">
+
+                         <div class="column column-last col-lg-12 col-md-12 col-sm-12">
+                             <div id="menu-widget-2" class="footer-widget-column widget menu">
+                                 <div class="widget-menu">
+                                     <ul id="menu-footer" class="menu">
+                                         @foreach (var menuItem in Model.FooterNavMenuModel.items)
+                                         {
+                                             <li id="menu-item-@menuItem.id" class="menu-item menu-item-type-@menuItem.type menu-item-object-@menuItem._object menu-item-@menuItem.id"><a href="@menuItem.url">@menuItem.title</a></li>
+                                         }
+                                     </ul>
+                                 </div>
+                                 <div style="clear: both;"></div>
+                             </div>
+                         </div>
+
+                         <div class="clearfix"></div>
+                     </div> <!-- columns -->
+                 </div> <!-- row -->
+             </footer> <!-- footer-widget-area -->
+
+
+             <footer id="footer" class="footer-copyright-area">
+                 <div class="row">
+                     <div class="copyright-content">
+
+                         <div class="copyright-notice">
+                             <div>© Copyright 2016 | All Rights Reserved</div>
+                         </div>
+                         <div class="social-links-footer">
+                             <div class="social-networks">
+                                 <div class="social-networks-wrapper">
+                                     
+                                 </div>
+                             </div>
+                         </div>
+
+                     </div> <!-- copyright-content -->
+                 </div> <!-- row -->
+             </footer> <!-- #footer -->
+         </div>
+     }
+}
